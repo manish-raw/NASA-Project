@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const {parse} = require('csv-parse');
 
-const habitablePlanet =[];
+const habitablePlanets =[];
 
 function isHabitablePlanet (planet){
     return planet['koi_disposition'] === 'CONFIRMED'
@@ -21,7 +21,7 @@ function loadPlanetsData(){
                 }))
             .on('data', (data) =>{
                 if(isHabitablePlanet(data)){
-                    habitablePlanet.push(data);
+                    habitablePlanets.push(data);
                 }
             })
             .on('error', (err)=>{
@@ -29,14 +29,17 @@ function loadPlanetsData(){
                 reject(err);
             })
             .on('end', ()=>{
-                console.log(`${habitablePlanet.length} habitable planets found!`);
+                console.log(`${habitablePlanets.length} habitable planets found!`);
                 resolve();
             });
     });
 }
 
+function getAllPlanets(){
+    return habitablePlanets;
+}
 
 module.exports = {
     loadPlanetsData,
-    planets: habitablePlanet,
+    getAllPlanets
 }
