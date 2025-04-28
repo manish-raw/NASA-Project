@@ -4,6 +4,7 @@ I have been working on this project from Jan'25. During this journey I learnt a 
 
 - Cluster module
 - API integration with Frontend
+- CORS
 - React.js
 - REST API
 - Process Manager (PM2)
